@@ -17,7 +17,7 @@ time_table_drop = "DROP TABLE  IF EXISTS time;"
 
 # CREATE TABLES
 
-staging_events_table_create= ("""
+staging_events_table_create = ("""
 CREATE TABLE IF NOT EXISTS staging_events
 (
     artist VARCHAR,
@@ -60,12 +60,12 @@ CREATE TABLE IF NOT EXISTS staging_songs
 songplay_table_create = ("""
 CREATE TABLE IF NOT EXISTS songplays
 (
-    songplay_id INTEGER IDENTITY (1, 1) PRIMARY KEY ,
-    start_time TIMESTAMP,
-    user_id INTEGER,
+    songplay_id INTEGER IDENTITY (1, 1) PRIMARY KEY,
+    start_time TIMESTAMP NOT NULL,
+    user_id INTEGER NOT NULL,
     level VARCHAR,
-    song_id VARCHAR,
-    artist_id VARCHAR,
+    song_id VARCHAR NOT NULL,
+    artist_id VARCHAR NOT NULL,
     session_id INTEGER,
     location VARCHAR,
     user_agent VARCHAR
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS songs
 (
     song_id VARCHAR PRIMARY KEY,
     title VARCHAR,
-    artist_id VARCHAR,
+    artist_id VARCHAR NOT NULL,
     year INTEGER ENCODE BYTEDICT,
     duration FLOAT
 )
@@ -103,7 +103,7 @@ artist_table_create = ("""
 CREATE TABLE IF NOT EXISTS artists
 (
     artist_id VARCHAR PRIMARY KEY ,
-    name VARCHAR,
+    name VARCHAR NOT NULL,
     location VARCHAR,
     latitude FLOAT,
     longitude FLOAT
